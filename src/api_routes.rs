@@ -2,9 +2,9 @@ use actix_session::CookieSession;
 use actix_web::{guard, web, *};
 use api::actions::ManagementTrait;
 // use api::actions::monitoring::AggregationManagementTrait;
-use api::common::user::*;
 
-use api::common::user;
+use api::common::user::*;
+use api::common::Health;
 use serde::Deserialize;
 
 use utils::rate_limit::RateLimit;
@@ -20,7 +20,7 @@ pub fn config(cfg: &mut web::ServiceConfig, rate_limit: &RateLimit) {
                     .route("", web::post().to(UserApi::create_item))
                     .route("/{user_id}", web::get().to(UserApi::get_item))
                     .route("/{user_id}", web::delete().to(UserApi::delete_item))
-                    .route("", web::get().to(UserApi::get_collection(req, coll)))
+                    .route("", web::get().to(UserApi::get_collection))
                     .route("/{user_id}", web::put().to(UserApi::update_item)),
             ),
     );
