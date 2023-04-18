@@ -1,6 +1,4 @@
-// @generated automatically by Diesel CLI.
-
-diesel::table! {
+table! {
     categories (id) {
         id -> Varchar,
         name -> Varchar,
@@ -12,7 +10,7 @@ diesel::table! {
     }
 }
 
-diesel::table! {
+table! {
     category_aggregations (id) {
         id -> Varchar,
         category_id -> Varchar,
@@ -24,7 +22,7 @@ diesel::table! {
     }
 }
 
-diesel::table! {
+table! {
     identifies (id) {
         id -> Varchar,
         user_id -> Varchar,
@@ -37,7 +35,7 @@ diesel::table! {
     }
 }
 
-diesel::table! {
+table! {
     order_items (id) {
         id -> Varchar,
         order_id -> Varchar,
@@ -49,7 +47,7 @@ diesel::table! {
     }
 }
 
-diesel::table! {
+table! {
     orders (id) {
         id -> Varchar,
         user_id -> Varchar,
@@ -61,7 +59,7 @@ diesel::table! {
     }
 }
 
-diesel::table! {
+table! {
     payments (id) {
         id -> Varchar,
         order_id -> Varchar,
@@ -73,7 +71,7 @@ diesel::table! {
     }
 }
 
-diesel::table! {
+table! {
     products (id) {
         id -> Varchar,
         name -> Varchar,
@@ -88,7 +86,7 @@ diesel::table! {
     }
 }
 
-diesel::table! {
+table! {
     user_aggregations (id) {
         id -> Varchar,
         user_id -> Varchar,
@@ -100,16 +98,19 @@ diesel::table! {
     }
 }
 
-diesel::table! {
+table! {
     users (id) {
         id -> Varchar,
         fname -> Varchar,
         lname -> Varchar,
         gender -> Varchar,
         email -> Varchar,
+        phone_number -> Varchar,
         address -> Nullable<Text>,
         #[sql_name = "type"]
         type_ -> Varchar,
+        user_name -> Varchar,
+        pwd -> Varchar,
         created_by -> Varchar,
         created_at -> Timestamp,
         updated_by -> Varchar,
@@ -117,16 +118,16 @@ diesel::table! {
     }
 }
 
-diesel::joinable!(category_aggregations -> categories (category_id));
-diesel::joinable!(identifies -> users (user_id));
-diesel::joinable!(order_items -> orders (order_id));
-diesel::joinable!(order_items -> products (product_id));
-diesel::joinable!(orders -> users (user_id));
-diesel::joinable!(payments -> orders (order_id));
-diesel::joinable!(products -> categories (category_id));
-diesel::joinable!(user_aggregations -> users (user_id));
+joinable!(category_aggregations -> categories (category_id));
+joinable!(identifies -> users (user_id));
+joinable!(order_items -> orders (order_id));
+joinable!(order_items -> products (product_id));
+joinable!(orders -> users (user_id));
+joinable!(payments -> orders (order_id));
+joinable!(products -> categories (category_id));
+joinable!(user_aggregations -> users (user_id));
 
-diesel::allow_tables_to_appear_in_same_query!(
+allow_tables_to_appear_in_same_query!(
     categories,
     category_aggregations,
     identifies,

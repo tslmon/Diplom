@@ -6,7 +6,7 @@ extern crate strum_macros;
 use diesel::PgConnection;
 pub mod models;
 use crate::diesel::Connection;
-use db_schema::RecruitError;
+use db_schema::models::errors::PetsShopAPIError;
 use diesel::{result::Error, *};
 use errors_lib_rs::{db::ModelErrorMessage, model::ModelError};
 use serde::Serialize;
@@ -169,7 +169,7 @@ where
                     let mut _value: &Value;
                     match json_val {
                         Ok(_res) => _value = _res,
-                        Err(_err) => return Err(RecruitError::diesel_error(_err)),
+                        Err(_err) => return Err(PetsShopAPIError::diesel_error(_err)),
                     };
                     _return.insert(item.into(), json!(_value));
                 }

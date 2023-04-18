@@ -1,0 +1,11 @@
+/Users/gooyoo/Downloads/Diplom/target/debug/deps/serde_path_to_error-95a1c25f00d9c41d.rmeta: /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_path_to_error-0.1.11/src/lib.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_path_to_error-0.1.11/src/de.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_path_to_error-0.1.11/src/path.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_path_to_error-0.1.11/src/ser.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_path_to_error-0.1.11/src/wrap.rs
+
+/Users/gooyoo/Downloads/Diplom/target/debug/deps/libserde_path_to_error-95a1c25f00d9c41d.rlib: /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_path_to_error-0.1.11/src/lib.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_path_to_error-0.1.11/src/de.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_path_to_error-0.1.11/src/path.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_path_to_error-0.1.11/src/ser.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_path_to_error-0.1.11/src/wrap.rs
+
+/Users/gooyoo/Downloads/Diplom/target/debug/deps/serde_path_to_error-95a1c25f00d9c41d.d: /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_path_to_error-0.1.11/src/lib.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_path_to_error-0.1.11/src/de.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_path_to_error-0.1.11/src/path.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_path_to_error-0.1.11/src/ser.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_path_to_error-0.1.11/src/wrap.rs
+
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_path_to_error-0.1.11/src/lib.rs:
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_path_to_error-0.1.11/src/de.rs:
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_path_to_error-0.1.11/src/path.rs:
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_path_to_error-0.1.11/src/ser.rs:
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_path_to_error-0.1.11/src/wrap.rs:

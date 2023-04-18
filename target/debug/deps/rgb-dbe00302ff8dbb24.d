@@ -1,0 +1,13 @@
+/Users/gooyoo/Downloads/Diplom/target/debug/deps/rgb-dbe00302ff8dbb24.rmeta: /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/lib.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/internal/convert/mod.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/internal/convert/array.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/internal/convert/tuple.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/internal/ops.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/internal/pixel.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/internal/rgb.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/internal/rgba.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/alt.rs
+
+/Users/gooyoo/Downloads/Diplom/target/debug/deps/rgb-dbe00302ff8dbb24.d: /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/lib.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/internal/convert/mod.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/internal/convert/array.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/internal/convert/tuple.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/internal/ops.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/internal/pixel.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/internal/rgb.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/internal/rgba.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/alt.rs
+
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/lib.rs:
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/internal/convert/mod.rs:
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/internal/convert/array.rs:
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/internal/convert/tuple.rs:
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/internal/ops.rs:
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/internal/pixel.rs:
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/internal/rgb.rs:
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/internal/rgba.rs:
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/rgb-0.8.36/src/alt.rs:

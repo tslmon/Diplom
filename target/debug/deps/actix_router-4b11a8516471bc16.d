@@ -1,0 +1,13 @@
+/Users/gooyoo/Downloads/Diplom/target/debug/deps/actix_router-4b11a8516471bc16.rmeta: /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/lib.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/de.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/path.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/pattern.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/quoter.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/resource.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/resource_path.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/router.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/url.rs
+
+/Users/gooyoo/Downloads/Diplom/target/debug/deps/actix_router-4b11a8516471bc16.d: /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/lib.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/de.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/path.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/pattern.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/quoter.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/resource.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/resource_path.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/router.rs /Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/url.rs
+
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/lib.rs:
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/de.rs:
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/path.rs:
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/pattern.rs:
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/quoter.rs:
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/resource.rs:
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/resource_path.rs:
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/router.rs:
+/Users/gooyoo/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-router-0.5.1/src/url.rs:
