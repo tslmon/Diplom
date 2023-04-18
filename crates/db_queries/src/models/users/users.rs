@@ -1,6 +1,6 @@
 use crate::{Aggregation, Crud, ManagementAsyncTrait};
 use db_schema::models::errors::PetsShopAPIError;
-use db_schema::models::users::{User, UserForm};
+use db_schema::models::users::{User, UserAggregation, UserForm};
 use db_schema::schema::{user_aggregations, user_aggregations::dsl::*};
 use db_schema::schema::{users, users::dsl::*};
 use db_schema::UserId;
@@ -166,175 +166,13 @@ impl ManagementAsyncTrait<UserForm, UserId> for User {
     }
 }
 
-/// CRUD implementation for Tenant Identity Provider
-///
-/// Create, Update, Delete, Read operation implementation
-/// fn create(
-///     _conn: &PgConnection,
-///     _form: &UserScopeForm
-/// ) -> Result<Self, ModelError>
-///
-
-// impl Aggregation<UserId> for UserAggregation {
-//     fn read(_conn: &PgConnection, _id: UserId) -> Result<Self, ModelError> {
-//         let _result = User_aggregations
-//             .filter(User_aggregations::User_id.eq(_id))
-//             .first::<Self>(_conn);
-//         match _result {
-//             Ok(res) => Ok(res),
-//             Err(_err) => Err(PetsShopAPIError::diesel_error(_err)),
-//         }
-//     }
-// }
-
 #[async_trait::async_trait(?Send)]
 pub trait User_ {
     /// Helper functions
     fn users_by_filter<'a>(_sql: &'a str) -> users::BoxedQuery<'a, diesel::pg::Pg> {
         users::table.filter(sql(_sql)).into_boxed()
     }
-    // async fn set_secret(
-    //     _conn: &PgConnection,
-    //     _user_id: UserId,
-    //     _user_secret: &str,
-    //     _user_secret_expires_at: chrono::NaiveDateTime,
-    // ) -> Result<Client, ModelError>
-    // where
-    //     Self: Sized;
-
-    async fn get_user_childs(
-        _conn: &PgConnection,
-        _user: &Vec<User>,
-        _fields: &Option<Vec<String>>,
-        _expand: &Option<Vec<String>>,
-    ) -> Result<(Option<Vec<Vec<UserAggregation>>>, Option<Vec<Vec<Room>>>), ModelError>
-    where
-        Self: Sized;
-
-    async fn get_user_aggregations(
-        _conn: &PgConnection,
-        _user: &Vec<User>,
-        _offset: &Option<i64>,
-        _limit: &Option<i64>,
-        _fields: &Option<Vec<String>>,
-        _expand: &bool,
-    ) -> Result<Option<Vec<Vec<UserAggregation>>>, ModelError>
-    where
-        Self: Sized;
-
-    async fn get_user_grouped_rooms(
-        _conn: &PgConnection,
-        _user: &Vec<User>,
-        _offset: &Option<i64>,
-        _limit: &Option<i64>,
-        _fields: &Option<Vec<String>>,
-        _expand: &bool,
-    ) -> Result<Option<Vec<Vec<Room>>>, ModelError>
-    where
-        Self: Sized;
 }
 
 #[async_trait::async_trait(?Send)]
-impl User_ for User {
-    // async fn set_secret(
-    //     _conn: &PgConnection,
-    //     _user_id: UserId,
-    //     _user_secret: &str,
-    //     _user_secret_expires_at: chrono::NaiveDateTime,
-    // ) -> Result<Client, ModelError>
-    // where
-    //     Self: Sized,
-    // {
-    //     let a = Users::update(Users.filter(id.eq(_user_id)))
-    //         .set((
-    //             client_secret.eq(_user_secret),
-    //             client_secret_expires_at.eq(_user_secret_expires_at),
-    //         ))
-    //         .get_result::<Self>(_conn);
-    //     Ok(a.unwrap())
-    // }
-    async fn get_user_aggregations(
-        _conn: &PgConnection,
-        _user: &Vec<User>,
-        _offset: &Option<i64>,
-        _limit: &Option<i64>,
-        _fields: &Option<Vec<String>>,
-        _expand: &bool,
-    ) -> Result<Option<Vec<Vec<UserAggregation>>>, ModelError>
-    where
-        Self: Sized,
-    {
-        if *_expand {
-            let _aggrigations = UserAggregation::belonging_to(_user)
-                .limit(_limit.unwrap_or(10))
-                .load::<UserAggregation>(_conn);
-
-            let _aggrigations = match _aggrigations {
-                Ok(res) => res,
-                Err(_err) => return Err(PetsShopAPIError::diesel_error(_err)),
-            };
-
-            let _grouped_aggrigations: Vec<Vec<UserAggregation>> = _aggrigations.grouped_by(_user);
-            Ok(Some(_grouped_aggrigations))
-        } else {
-            Ok(None)
-        }
-    }
-
-    async fn get_user_grouped_rooms(
-        _conn: &PgConnection,
-        _user: &Vec<User>,
-        _offset: &Option<i64>,
-        _limit: &Option<i64>,
-        _fields: &Option<Vec<String>>,
-        _expand: &bool,
-    ) -> Result<Option<Vec<Vec<Room>>>, ModelError>
-    where
-        Self: Sized,
-    {
-        if *_expand {
-            let _rooms = Room::belonging_to(_user)
-                .limit(_limit.unwrap_or(10))
-                .load::<Room>(_conn);
-
-            let _rooms = match _rooms {
-                Ok(res) => res,
-                Err(_err) => return Err(PetsShopAPIError::diesel_error(_err)),
-            };
-
-            let _grouped_rooms: Vec<Vec<Room>> = _rooms.grouped_by(_user);
-            Ok(Some(_grouped_rooms))
-        } else {
-            Ok(None)
-        }
-    }
-
-    async fn get_user_childs(
-        _conn: &PgConnection,
-        _user: &Vec<User>,
-        _fields: &Option<Vec<String>>,
-        _expand: &Option<Vec<String>>,
-    ) -> Result<(Option<Vec<Vec<UserAggregation>>>, Option<Vec<Vec<Room>>>), ModelError> {
-        let _return = match _expand {
-            Some(val) => {
-                let exec_plan: (bool, bool) = if val.iter().any(|a| a == "all") {
-                    (true, true)
-                } else {
-                    (
-                        val.iter().any(|a| a == "aggregations"),
-                        val.iter().any(|a| a == "rooms"),
-                    )
-                };
-                let aggregations_fut =
-                    User::get_user_aggregations(_conn, _user, &None, &None, &None, &exec_plan.0);
-
-                let rooms_fut =
-                    User::get_user_grouped_rooms(_conn, _user, &None, &None, &None, &exec_plan.1);
-
-                try_join!(aggregations_fut, rooms_fut)?
-            }
-            None => (None, None),
-        };
-        Ok(_return)
-    }
-}
+impl User_ for User {}

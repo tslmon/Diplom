@@ -12,7 +12,6 @@ pub mod token;
 pub mod verify;
 pub mod collection;
 pub mod utils;
-#[cfg(test)]
 pub mod version;
 
 use crate::settings::structs::Settings;

@@ -34,8 +34,10 @@ pub struct UserForm {
     pub lname: Option<String>,
     pub gender: Option<String>,
     pub email: Option<String>,
+    pub phone_number: Option<String>,
     pub address: Option<String>,
-    pub type_: Option<String>,
+    pub user_name: Option<String>,
+    pub pwd: Option<String>,
 }
 
 #[derive(Clone, Queryable, Identifiable, Associations, PartialEq, Debug, Serialize)]

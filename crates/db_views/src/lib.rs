@@ -1,4 +1,3 @@
-pub mod models;
 extern crate diesel;
 extern crate diesel_derive_newtype;
 use actix_web::{web::Query as Web_Query, HttpRequest};
@@ -12,6 +11,10 @@ use errors_lib_rs::model::ModelError;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use std::collections::HashMap;
+
+//
+pub mod users;
+//
 
 #[derive(Serialize, Deserialize)]
 pub struct ResponceCollection<T> {
@@ -244,7 +247,7 @@ async fn get_fields(
     _data_fields: Vec<String>,
     _expands: Vec<bool>,
     _expand_items: Vec<SetExpand>,
-  ) -> Result<Option<Vec<String>>, ModelError> {
+) -> Result<Option<Vec<String>>, ModelError> {
     let mut _op_fields: Vec<String> = Vec::new();
     if _fields != _data_fields {
         for _item in _data_fields.clone() {
@@ -259,7 +262,7 @@ async fn get_fields(
         _op_fields = _fields.to_vec();
     }
     let mut i = 0;
-  
+
     for _item in _expand_items {
         if _expands[i] {
             let _a = std::mem::replace(&mut _op_fields[_item.0], _item.1);
@@ -268,6 +271,6 @@ async fn get_fields(
         }
         i += 1;
     }
-  
+
     Ok(Some(_op_fields))
-  }
+}
