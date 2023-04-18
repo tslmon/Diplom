@@ -13,15 +13,27 @@ pub fn config(cfg: &mut web::ServiceConfig) {
             // Health Check
             .service(web::scope("/health").route("", web::get().to(HttpResponse::Ok)))
             .service(
-                web::scope("/pools")
-                    .route("", web::get().to(PoolApi::get_collection))
-                    .route("", web::post().to(PoolApi::create_item))
-                    .route("/{pool_id}", web::get().to(PoolApi::get_item))
-                    .route("/{pool_id}", web::put().to(PoolApi::update_item))
-                    .route("/{pool_id}", web::delete().to(PoolApi::delete_item))
-                    .route("/{job_id}", web::delete().to(JobApi::delete_item))
-                    .route("/{job_id}/stages", web::get().to(StagesApi::get_collection))
-                    .route("/{job_id}/stages", web::post().to(StagesApi::create_item))
+                web::scope("/users")
+                    .route("", web::get().to(UserApi::get_collection))
+                    .route("", web::post().to(UserApi::create_item))
+                    .route("/{user_id}", web::get().to(UserApi::get_item))
+                    .route("/{user_id}", web::put().to(UserApi::update_item))
+                    .route("/{user_id}", web::delete().to(UserApi::delete_item))
+
+                    
+                    .route("", web::get().to(ProductApi::get_collection))
+                    .route("", web::post().to(ProductApi::create_item))
+                    .route("/{product_id}", web::get().to(ProductApi::get_item))
+                    .route("/{product_id}", web::put().to(ProductApi::update_item))
+                    .route("/{product_id}", web::delete().to(ProductApi::delete_item))
+
+
+                    .route("", web::get().to(CategoryApi::get_collection))
+                    .route("", web::post().to(CategoryApi::create_item))
+                    .route("/{category_id}", web::get().to(CategoryApi::get_item))
+                    .route("/{category_id}", web::put().to(CategoryApi::update_item))
+                    .route("/{category_id}", web::delete().to(CategoryApi::delete_item))
+                  
                     .route(
                         "/{job_id}/stages/{stage_id}",
                         web::get().to(StagesApi::get_item),
