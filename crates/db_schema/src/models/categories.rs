@@ -25,6 +25,8 @@ pub struct Category {
 pub struct CategoryForm {
     pub name: Option<String>,
     pub parent: Option<String>,
+    pub created_by: Option<String>,
+    pub updated_by: Option<String>,
 }
 
 #[derive(Clone, Queryable, Identifiable, Associations, PartialEq, Debug, Serialize)]

@@ -21,10 +21,15 @@ use std::str::FromStr;
 use utils::{AuthError, QUERY_EXPAND_REGEX, QUERY_FIELDS_REGEX, QUERY_SORT_REGEX};
 
 //
+pub mod cards;
+pub mod categories;
+pub mod comments;
 pub mod health;
+pub mod order_items;
+pub mod orders;
+pub mod payments;
 pub mod products;
 pub mod users;
-
 //
 #[async_trait::async_trait(?Send)]
 pub trait Perform {

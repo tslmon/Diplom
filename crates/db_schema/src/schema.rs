@@ -1,4 +1,16 @@
 table! {
+    cards (id) {
+        id -> Varchar,
+        user_id -> Varchar,
+        product_id -> Varchar,
+        created_by -> Varchar,
+        created_at -> Timestamp,
+        updated_by -> Varchar,
+        updated_at -> Timestamp,
+    }
+}
+
+table! {
     categories (id) {
         id -> Varchar,
         name -> Varchar,
@@ -15,6 +27,19 @@ table! {
         id -> Varchar,
         category_id -> Varchar,
         products -> Int8,
+        created_by -> Varchar,
+        created_at -> Timestamp,
+        updated_by -> Varchar,
+        updated_at -> Timestamp,
+    }
+}
+
+table! {
+    comments (id) {
+        id -> Varchar,
+        user_id -> Varchar,
+        product_id -> Varchar,
+        comment -> Nullable<Text>,
         created_by -> Varchar,
         created_at -> Timestamp,
         updated_by -> Varchar,
@@ -40,18 +65,6 @@ table! {
         id -> Varchar,
         order_id -> Varchar,
         product_id -> Varchar,
-        created_by -> Varchar,
-        created_at -> Timestamp,
-        updated_by -> Varchar,
-        updated_at -> Timestamp,
-    }
-}
-
-table! {
-    orders (id) {
-        id -> Varchar,
-        user_id -> Varchar,
-        order_date -> Timestamp,
         created_by -> Varchar,
         created_at -> Timestamp,
         updated_by -> Varchar,
@@ -118,23 +131,41 @@ table! {
     }
 }
 
+table! {
+    usr_orders (id) {
+        id -> Varchar,
+        user_id -> Varchar,
+        order_date -> Timestamp,
+        created_by -> Varchar,
+        created_at -> Timestamp,
+        updated_by -> Varchar,
+        updated_at -> Timestamp,
+    }
+}
+
+joinable!(cards -> products (product_id));
+joinable!(cards -> users (user_id));
 joinable!(category_aggregations -> categories (category_id));
+joinable!(comments -> products (product_id));
+joinable!(comments -> users (user_id));
 joinable!(identifies -> users (user_id));
-joinable!(order_items -> orders (order_id));
 joinable!(order_items -> products (product_id));
-joinable!(orders -> users (user_id));
-joinable!(payments -> orders (order_id));
+joinable!(order_items -> usr_orders (order_id));
+joinable!(payments -> usr_orders (order_id));
 joinable!(products -> categories (category_id));
 joinable!(user_aggregations -> users (user_id));
+joinable!(usr_orders -> users (user_id));
 
 allow_tables_to_appear_in_same_query!(
+    cards,
     categories,
     category_aggregations,
+    comments,
     identifies,
     order_items,
-    orders,
     payments,
     products,
     user_aggregations,
     users,
+    usr_orders,
 );

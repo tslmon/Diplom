@@ -38,6 +38,8 @@ pub struct UserForm {
     pub address: Option<String>,
     pub user_name: Option<String>,
     pub pwd: Option<String>,
+    pub created_by: Option<String>,
+    pub updated_by: Option<String>,
 }
 
 #[derive(Clone, Queryable, Identifiable, Associations, PartialEq, Debug, Serialize)]

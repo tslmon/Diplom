@@ -611,44 +611,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "aircampi_auth_api"
-version = "0.1.0"
-dependencies = [
- "actix",
- "actix-cors",
- "actix-rt 2.8.0",
- "actix-session",
- "actix-web 4.3.1",
- "anyhow",
- "api",
- "background-jobs",
- "base64 0.13.1",
- "cargo-husky",
- "chrono",
- "clokwerk",
- "db_queries",
- "db_schema",
- "diesel",
- "diesel_migrations",
- "env_logger",
- "futures-util",
- "http",
- "http-signature-normalization-actix",
- "http-signature-normalization-reqwest",
- "lazy_static",
- "log",
- "openssl",
- "reqwest 0.11.16",
- "serde",
- "serde_json",
- "sha2 0.9.9",
- "strum 0.20.0",
- "tokio 1.27.0",
- "url",
- "utils",
-]
-
-[[package]]
 name = "alloc-no-stdlib"
 version = "2.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2977,6 +2939,44 @@ dependencies = [
  "once_cell",
  "pest",
  "sha2 0.10.6",
+]
+
+[[package]]
+name = "petsshop_api"
+version = "0.1.0"
+dependencies = [
+ "actix",
+ "actix-cors",
+ "actix-rt 2.8.0",
+ "actix-session",
+ "actix-web 4.3.1",
+ "anyhow",
+ "api",
+ "background-jobs",
+ "base64 0.13.1",
+ "cargo-husky",
+ "chrono",
+ "clokwerk",
+ "db_queries",
+ "db_schema",
+ "diesel",
+ "diesel_migrations",
+ "env_logger",
+ "futures-util",
+ "http",
+ "http-signature-normalization-actix",
+ "http-signature-normalization-reqwest",
+ "lazy_static",
+ "log",
+ "openssl",
+ "reqwest 0.11.16",
+ "serde",
+ "serde_json",
+ "sha2 0.9.9",
+ "strum 0.20.0",
+ "tokio 1.27.0",
+ "url",
+ "utils",
 ]
 
 [[package]]

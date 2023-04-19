@@ -19,6 +19,13 @@ use utils::{
 
 //
 
+pub mod card;
+pub mod category;
+pub mod comment;
+pub mod order;
+pub mod order_item;
+pub mod payment;
+pub mod product;
 pub mod user;
 //
 

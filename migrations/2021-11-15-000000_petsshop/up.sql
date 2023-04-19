@@ -46,11 +46,12 @@ CREATE TABLE IF NOT EXISTS identifies (
 
 SELECT diesel_manage_updated_at('identifies');
 
+
 --
 -- orders
 --
 
-CREATE TABLE IF NOT EXISTS orders (
+CREATE TABLE IF NOT EXISTS usr_orders (
     id character varying(255) NOT NULL DEFAULT uuid_generate_v4(),
     user_id character varying(255) NOT NULL,
     order_date timestamp without time zone NOT NULL DEFAULT now(),
@@ -58,14 +59,14 @@ CREATE TABLE IF NOT EXISTS orders (
     created_at timestamp without time zone NOT NULL DEFAULT now(),
     updated_by character varying(255) NOT NULL,      
     updated_at timestamp without time zone NOT NULL DEFAULT now(),
-    CONSTRAINT pkey_orders PRIMARY KEY (id),
-    CONSTRAINT fkey_orders_users FOREIGN KEY (user_id)
+    CONSTRAINT pkey_usr_orders PRIMARY KEY (id),
+    CONSTRAINT fkey_usr_orders_users FOREIGN KEY (user_id)
         REFERENCES users (id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
 
-SELECT diesel_manage_updated_at('orders');
+SELECT diesel_manage_updated_at('usr_orders');
 
 --
 -- categories
@@ -121,8 +122,8 @@ CREATE TABLE IF NOT EXISTS order_items (
     updated_by character varying(255) NOT NULL,      
     updated_at timestamp without time zone NOT NULL DEFAULT now(),
     CONSTRAINT pkey_order_items PRIMARY KEY (id),    
-    CONSTRAINT fkey_order_items_orders FOREIGN KEY (order_id)
-        REFERENCES orders (id) MATCH SIMPLE
+    CONSTRAINT fkey_order_items_usr_orders FOREIGN KEY (order_id)
+        REFERENCES usr_orders (id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE,  
     CONSTRAINT fkey_order_items_products FOREIGN KEY (product_id)
@@ -146,13 +147,64 @@ CREATE TABLE IF NOT EXISTS payments (
     updated_by character varying(255) NOT NULL,      
     updated_at timestamp without time zone NOT NULL DEFAULT now(),
     CONSTRAINT pkey_payments PRIMARY KEY (id),
-    CONSTRAINT fkey_payments_orders FOREIGN KEY (order_id)
-        REFERENCES orders (id) MATCH SIMPLE
+    CONSTRAINT fkey_payments_usr_orders FOREIGN KEY (order_id)
+        REFERENCES usr_orders (id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE    
 );
 
 SELECT diesel_manage_updated_at('payments');
+
+--
+-- comments
+--
+
+CREATE TABLE IF NOT EXISTS comments (
+    id character varying(255) NOT NULL DEFAULT uuid_generate_v4(),
+    user_id character varying(255) NOT NULL,
+    product_id character varying(255) NOT NULL,
+    comment text,
+    created_by character varying(255) NOT NULL,      
+    created_at timestamp without time zone NOT NULL DEFAULT now(),
+    updated_by character varying(255) NOT NULL,      
+    updated_at timestamp without time zone NOT NULL DEFAULT now(),
+    CONSTRAINT pkey_comments PRIMARY KEY (id),
+    CONSTRAINT fkey_comments_users FOREIGN KEY (user_id)
+        REFERENCES users (id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,   
+    CONSTRAINT fkey_comments_products FOREIGN KEY (product_id)
+        REFERENCES products (id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE               
+);
+
+SELECT diesel_manage_updated_at('comments');
+
+--
+-- cards
+--
+
+CREATE TABLE IF NOT EXISTS cards (
+    id character varying(255) NOT NULL DEFAULT uuid_generate_v4(),
+    user_id character varying(255) NOT NULL,
+    product_id character varying(255) NOT NULL,
+    created_by character varying(255) NOT NULL,      
+    created_at timestamp without time zone NOT NULL DEFAULT now(),
+    updated_by character varying(255) NOT NULL,      
+    updated_at timestamp without time zone NOT NULL DEFAULT now(),
+    CONSTRAINT pkey_cards PRIMARY KEY (id),
+    CONSTRAINT fkey_cards_users FOREIGN KEY (user_id)
+        REFERENCES users (id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,   
+    CONSTRAINT fkey_cards_products FOREIGN KEY (product_id)
+        REFERENCES products (id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE               
+);
+
+SELECT diesel_manage_updated_at('cards');
 
 --
 -- ////// Aggregations. //////

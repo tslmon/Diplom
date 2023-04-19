@@ -28,4 +28,6 @@ pub struct ProductForm {
     pub price: Option<i64>,
     pub quantity: Option<i64>,
     pub category_id: Option<CategoryId>,
+    pub created_by: Option<String>,
+    pub updated_by: Option<String>,
 }

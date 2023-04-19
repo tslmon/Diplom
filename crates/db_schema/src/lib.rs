@@ -77,3 +77,19 @@ impl fmt::Display for PaymentId {
         write!(f, "{}", self.0)
     }
 }
+
+#[derive(Debug, Default, Clone, Hash, Eq, PartialEq, Serialize, Deserialize, DieselNewType)]
+pub struct CommentId(pub String);
+impl fmt::Display for CommentId {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}", self.0)
+    }
+}
+
+#[derive(Debug, Default, Clone, Hash, Eq, PartialEq, Serialize, Deserialize, DieselNewType)]
+pub struct CardId(pub String);
+impl fmt::Display for CardId {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}", self.0)
+    }
+}

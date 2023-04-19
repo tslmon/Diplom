@@ -2,7 +2,7 @@
 --
 --  orders
 --
-CREATE FUNCTION user_aggregations_orders()
+CREATE FUNCTION user_aggregations_usr_orders()
     RETURNS trigger
     LANGUAGE 'plpgsql'
     COST 100
@@ -11,22 +11,22 @@ AS $BODY$
 begin
   IF (TG_OP = 'INSERT') THEN
     update user_aggregations 
-    set orders = orders + 1
+    set usr_orders = usr_orders + 1
     where user_id = NEW.id;
   ELSIF (TG_OP = 'DELETE') THEN
     update user_aggregations sa
-    set orders = orders - 1
+    set usr_orders = usr_orders - 1
     where user_id = OLD.id;
   END IF;
   return null;
 end
 $BODY$;
 
-CREATE TRIGGER user_aggregations_orders
+CREATE TRIGGER user_aggregations_usr_orders
     AFTER INSERT OR DELETE
-    ON orders
+    ON usr_orders
     FOR EACH ROW
-    EXECUTE PROCEDURE user_aggregations_orders();
+    EXECUTE PROCEDURE user_aggregations_usr_orders();
 
 
 --

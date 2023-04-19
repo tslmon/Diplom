@@ -13,7 +13,15 @@ use serde_json::Value;
 use std::collections::HashMap;
 
 //
+pub mod categories;
+pub mod comments;
+pub mod order_items;
+pub mod orders;
+pub mod payments;
+pub mod products;
 pub mod users;
+pub mod cards
+;
 //
 
 #[derive(Serialize, Deserialize)]

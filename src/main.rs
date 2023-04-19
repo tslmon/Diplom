@@ -2,7 +2,7 @@
 extern crate diesel_migrations;
 use actix_cors::Cors;
 use actix_web::{App, *};
-use aircampi_auth_api::api_routes;
+use petsshop_api::api_routes;
 use api::common::{blocking, AuthContext};
 use db_queries::get_database_url_from_env;
 use diesel::{

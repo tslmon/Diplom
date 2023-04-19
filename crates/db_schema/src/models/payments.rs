@@ -11,6 +11,7 @@ pub struct Payment {
     pub id: PaymentId,
     pub order_id: OrderId,
     pub amount: String,
+    pub created_by: String,
     pub created_at: chrono::NaiveDateTime,
     pub updated_by: String,
     pub updated_at: chrono::NaiveDateTime,
@@ -21,8 +22,6 @@ pub struct Payment {
 pub struct PaymentForm {
     pub order_id: OrderId,
     pub amount: String,
-    pub created_by: String,
-    pub created_at: chrono::NaiveDateTime,
-    pub updated_by: String,
-    pub updated_at: chrono::NaiveDateTime,
+    pub created_by: Option<String>,
+    pub updated_by: Option<String>,
 }

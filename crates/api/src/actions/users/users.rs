@@ -39,6 +39,8 @@ impl ManagementTrait<UserRequest> for UserApi {
             address: _data.address.clone(),
             user_name: _data.user_name.clone(),
             pwd: _data.pwd.clone(),
+            created_by: Some("user".to_string()),
+            updated_by: Some("user".to_string()),
         };
 
         let _response =
@@ -64,31 +66,6 @@ impl ManagementTrait<UserRequest> for UserApi {
         let _method = _req.method();
         println!("data = {:#?}", Some(_data.phone_number.clone()));
 
-        if "PUT" == _method.as_str() {
-            let json_str = serde_json::to_string(&_data).unwrap();
-            let json: Value = serde_json::from_str(&json_str).unwrap();
-            if let Some(obj) = json.as_object() {
-                let field_values: Vec<&Value> = obj.values().collect();
-                println!("Field values: {:?}", field_values);
-
-                let mut flag = 0;
-                for _i in field_values {
-                    if _i.is_null() {
-                        flag = flag + 1;
-                    }
-                    if flag > 0 {
-                        let _err = ApiError::new(
-                            ApiErrorEnum::InvalidRequest,
-                            String::from("invalid_request"),
-                            "All columns required in PUT action. See https://developer.hischool.one/api/"
-                                .to_string(),
-                        );
-                        return Err(_err);
-                    }
-                }
-            }
-        }
-
         let form = UserForm {
             fname: _data.fname.clone(),
             lname: _data.lname.clone(),
@@ -98,6 +75,8 @@ impl ManagementTrait<UserRequest> for UserApi {
             address: _data.address.clone(),
             user_name: _data.user_name.clone(),
             pwd: _data.pwd.clone(),
+            created_by: Some("user".to_string()),
+            updated_by: Some("user".to_string()),
         };
 
         let _response =
