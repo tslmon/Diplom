@@ -16,7 +16,7 @@ use utils::rate_limit::RateLimit;
 
 pub fn config(cfg: &mut web::ServiceConfig, rate_limit: &RateLimit) {
     cfg.service(
-        web::scope("/auth/v1")
+        web::scope("/petsshop/v1")
             // Health Check
             .service(web::scope("/health").route("", web::get().to(route_responder::<Health>)))
             // Building Management
