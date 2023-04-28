@@ -13,6 +13,7 @@ pub struct Order {
     pub id: OrderId,
     pub user_id: UserId,
     pub order_date: chrono::NaiveDateTime,
+    pub status: String,
     pub created_by: String,
     pub created_at: chrono::NaiveDateTime,
     pub updated_by: String,
@@ -22,7 +23,8 @@ pub struct Order {
 #[derive(Insertable, AsChangeset, Clone, Default, Debug)]
 #[table_name = "usr_orders"]
 pub struct OrderForm {
-    pub user_id: UserId,
+    pub user_id: Option<UserId>,
+    pub status: Option<String>,
     pub created_by: Option<String>,
     pub updated_by: Option<String>,
 }

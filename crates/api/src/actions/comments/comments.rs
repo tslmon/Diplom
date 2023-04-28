@@ -31,6 +31,8 @@ impl ManagementTrait<CommentRequest> for CommentApi {
         let _conn = connection(&_req);
         //println!("{:#?}", _data);
         let form = CommentForm {
+            user_id: _data.user_id.clone(),
+            product_id: _data.product_id.clone(),
             comment: _data.comment.clone(),
             created_by: Some("user".to_string()),
             updated_by: Some("user".to_string()),
@@ -60,6 +62,8 @@ impl ManagementTrait<CommentRequest> for CommentApi {
         println!("data = {:#?}", Some(_data.comment.clone()));
 
         let form = CommentForm {
+            user_id: None,
+            product_id: None,
             comment: _data.comment.clone(),
             created_by: Some("user".to_string()),
             updated_by: Some("user".to_string()),

@@ -31,10 +31,12 @@ impl ManagementTrait<OrderRequest> for OrderApi {
         let _conn = connection(&_req);
         //println!("{:#?}", _data);
         let form = OrderForm {
-            user_id: _data.user_id.clone(),
+            user_id: Some(_data.user_id.clone()),
+            status: Some("pending".to_string()),
             created_by: Some("user".to_string()),
             updated_by: Some("user".to_string()),
         };
+        println!("asd");
 
         let _response =
             OrderView::create_item(&_conn, &form, &_single.fields, &_single.expand).await?;
@@ -60,7 +62,8 @@ impl ManagementTrait<OrderRequest> for OrderApi {
         println!("data = {:#?}", Some(_data.user_id.clone()));
 
         let form = OrderForm {
-            user_id: _data.user_id.clone(),
+            user_id: Some(_data.user_id.clone()),
+            status: Some(_data.status.clone()),
             created_by: Some("user".to_string()),
             updated_by: Some("user".to_string()),
         };
@@ -140,3 +143,4 @@ impl ManagementTrait<OrderRequest> for OrderApi {
             .body(_body))
     }
 }
+

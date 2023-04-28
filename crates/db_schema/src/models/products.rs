@@ -11,6 +11,7 @@ pub struct Product {
     pub id: ProductId,
     pub name: String,
     pub description: Option<String>,
+    pub image: String,
     pub price: i64,
     pub quantity: i64,
     pub category_id: CategoryId,
@@ -25,6 +26,7 @@ pub struct Product {
 pub struct ProductForm {
     pub name: Option<String>,
     pub description: Option<String>,
+    pub image: Option<String>,
     pub price: Option<i64>,
     pub quantity: Option<i64>,
     pub category_id: Option<CategoryId>,

@@ -11,13 +11,16 @@ use futures::try_join;
 
 impl Crud<OrderForm, OrderId> for Order {
     fn create(_conn: &PgConnection, _form: &OrderForm) -> Result<Self, ModelError> {
+        println!("asd");
         let _result = insert_into(usr_orders)
             .values(_form)
             .get_result::<Self>(_conn);
+println!("{:#?}", _result);
         match _result {
             Ok(res) => Ok(res),
             Err(_err) => Err(PetsShopAPIError::diesel_error(_err)),
         }
+
     }
 
     fn read(_conn: &PgConnection, _id: &OrderId) -> Result<Self, ModelError> {

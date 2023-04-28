@@ -39,10 +39,10 @@ pub fn config(cfg: &mut web::ServiceConfig, rate_limit: &RateLimit) {
             .service(
                 web::scope("/products")
                     .route("", web::post().to(ProductApi::create_item))
-                    .route("/{produc_id}", web::get().to(ProductApi::get_item))
-                    .route("/{produc_id}", web::delete().to(ProductApi::delete_item))
+                    .route("/{product_id}", web::get().to(ProductApi::get_item))
+                    .route("/{product_id}", web::delete().to(ProductApi::delete_item))
                     .route("", web::get().to(ProductApi::get_collection))
-                    .route("/{produc_id}", web::put().to(ProductApi::update_item)),
+                    .route("/{product_id}", web::put().to(ProductApi::update_item)),
             )
             .service(
                 web::scope("/payments")

@@ -21,6 +21,8 @@ pub struct Comment {
 #[derive(Insertable, AsChangeset, Clone, Default, Debug)]
 #[table_name = "comments"]
 pub struct CommentForm {
+    pub user_id: Option<UserId>,
+    pub product_id: Option<ProductId>,
     pub comment: Option<String>,
     pub created_by: Option<String>,
     pub updated_by: Option<String>,

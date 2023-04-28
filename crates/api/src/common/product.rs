@@ -18,6 +18,7 @@ pub struct ProductApi {}
 pub struct ProductRequest {
     pub name: Option<String>,
     pub description: Option<String>,
+    pub image: Option<String>,
     pub price: Option<i64>,
     pub quantity: Option<i64>,
     pub category_id: Option<CategoryId>,

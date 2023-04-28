@@ -33,6 +33,7 @@ impl ManagementTrait<ProductRequest> for ProductApi {
         let form = ProductForm {
             name: _data.name.clone(),
             description: _data.description.clone(),
+            image: _data.image.clone(),
             price: _data.price.clone(),
             quantity: _data.quantity.clone(),
             category_id: _data.category_id.clone(),
@@ -66,6 +67,7 @@ impl ManagementTrait<ProductRequest> for ProductApi {
         let form = ProductForm {
             name: _data.name.clone(),
             description: _data.description.clone(),
+            image: _data.image.clone(),
             price: _data.price.clone(),
             quantity: _data.quantity.clone(),
             category_id: _data.category_id.clone(),

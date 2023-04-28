@@ -17,7 +17,5 @@ pub struct OrderApi {}
 #[derive(Clone, Default, Deserialize, Debug, Serialize)]
 pub struct OrderRequest {
     pub user_id: UserId,
+    pub status: String
 }
-//
-//
-//
