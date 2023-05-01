@@ -8,7 +8,7 @@ pub mod models;
 use crate::diesel::Connection;
 use db_schema::models::errors::PetsShopAPIError;
 use diesel::{result::Error, *};
-use errors_lib_rs::{db::ModelErrorMessage, model::ModelError};
+use db_schema::models::{db_error::ModelErrorMessage, model_error::ModelError};
 use serde::Serialize;
 use serde_json::{json, Map, Value};
 use std::env::{self, VarError};

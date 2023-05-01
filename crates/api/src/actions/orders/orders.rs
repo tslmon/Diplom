@@ -14,7 +14,7 @@ use db_schema::{
 };
 use db_views::orders::orders_view::OrderView;
 use db_views::RequestCollection;
-use errors_lib_rs::model::{ApiError, ApiErrorEnum};
+use db_schema::models::model_error::{ApiError, ApiErrorEnum};
 use futures::future::{ok, Ready};
 use rand::{distributions::Alphanumeric, Rng};
 use serde_json::Value;
@@ -31,8 +31,8 @@ impl ManagementTrait<OrderRequest> for OrderApi {
         let _conn = connection(&_req);
         //println!("{:#?}", _data);
         let form = OrderForm {
-            user_id: Some(_data.user_id.clone()),
-            status: Some("pending".to_string()),
+            user_id: _data.user_id.clone(),
+            order_status: Some("pending".to_string()),
             created_by: Some("user".to_string()),
             updated_by: Some("user".to_string()),
         };
@@ -62,8 +62,8 @@ impl ManagementTrait<OrderRequest> for OrderApi {
         println!("data = {:#?}", Some(_data.user_id.clone()));
 
         let form = OrderForm {
-            user_id: Some(_data.user_id.clone()),
-            status: Some(_data.status.clone()),
+            user_id: _data.user_id.clone(),
+            order_status: _data.status.clone(),
             created_by: Some("user".to_string()),
             updated_by: Some("user".to_string()),
         };

@@ -1,5 +1,5 @@
 use crate::{
-    schema::{order_items, usr_orders},
+    schema::{order_items, user_orders},
     OrderId, OrderItemId, ProductId, UserId,
 };
 

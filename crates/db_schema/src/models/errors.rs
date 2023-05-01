@@ -1,4 +1,4 @@
-use errors_lib_rs::db::ModelErrorMessage;
+use crate::models::db_error::ModelErrorMessage;
 
 pub struct PetsShopAPIError {}
 

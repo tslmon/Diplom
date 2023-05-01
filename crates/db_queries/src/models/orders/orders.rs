@@ -2,20 +2,19 @@ use crate::{Aggregation, Crud, ManagementAsyncTrait};
 use db_schema::models::errors::PetsShopAPIError;
 use db_schema::models::orders::{Order, OrderForm};
 use db_schema::schema::{user_aggregations, user_aggregations::dsl::*};
-use db_schema::schema::{usr_orders, usr_orders::dsl::*};
+use db_schema::schema::{user_orders, user_orders::dsl::*};
 use db_schema::OrderId;
 use diesel::update;
 use diesel::{dsl::*, result::Error, *};
-use errors_lib_rs::{db::ModelErrorMessage, model::ModelError};
+use db_schema::models::{db_error::ModelErrorMessage, model_error::ModelError};
 use futures::try_join;
 
 impl Crud<OrderForm, OrderId> for Order {
     fn create(_conn: &PgConnection, _form: &OrderForm) -> Result<Self, ModelError> {
-        println!("asd");
-        let _result = insert_into(usr_orders)
+        println!("{:#?}", _form);
+        let _result = insert_into(user_orders)
             .values(_form)
             .get_result::<Self>(_conn);
-println!("{:#?}", _result);
         match _result {
             Ok(res) => Ok(res),
             Err(_err) => Err(PetsShopAPIError::diesel_error(_err)),
@@ -24,7 +23,7 @@ println!("{:#?}", _result);
     }
 
     fn read(_conn: &PgConnection, _id: &OrderId) -> Result<Self, ModelError> {
-        let _result = usr_orders.find(_id).first::<Self>(_conn);
+        let _result = user_orders.find(_id).first::<Self>(_conn);
 
         match _result {
             Ok(res) => Ok(res),
@@ -33,7 +32,7 @@ println!("{:#?}", _result);
     }
 
     fn update(_conn: &PgConnection, _id: &OrderId, _form: &OrderForm) -> Result<Self, ModelError> {
-        let _result = diesel::update(usr_orders.find(_id))
+        let _result = diesel::update(user_orders.find(_id))
             .set(_form)
             .get_result::<Self>(_conn);
         match _result {
@@ -53,7 +52,7 @@ println!("{:#?}", _result);
     }
 
     fn delete(_conn: &PgConnection, _id: &OrderId) -> Result<usize, ModelError> {
-        let _result = diesel::delete(usr_orders.find(_id)).execute(_conn);
+        let _result = diesel::delete(user_orders.find(_id)).execute(_conn);
 
         match _result {
             Ok(res) => Ok(res),
@@ -84,21 +83,21 @@ impl ManagementAsyncTrait<OrderForm, OrderId> for Order {
                 s.push_str(q);
                 s.push_str(" ORDER BY ");
                 s.push_str(&sort.join(", "));
-                Self::usr_orders_by_filter(&s)
+                Self::user_orders_by_filter(&s)
             }
-            (Some(q), None) => Self::usr_orders_by_filter(q),
+            (Some(q), None) => Self::user_orders_by_filter(q),
             (None, Some(sort)) => {
                 s.push_str(" 1=1 ORDER BY ");
                 s.push_str(&sort.join(", "));
-                Self::usr_orders_by_filter(&s)
+                Self::user_orders_by_filter(&s)
             }
-            (None, None) => usr_orders.into_boxed(),
+            (None, None) => user_orders.into_boxed(),
         };
         if let Some(total_count) = _total_count {
             if *total_count {
                 let _total_sql = match _q {
-                    Some(q) => Self::usr_orders_by_filter(q),
-                    None => usr_orders.into_boxed(),
+                    Some(q) => Self::user_orders_by_filter(q),
+                    None => user_orders.into_boxed(),
                 };
                 let _result = _total_sql.select(count_star()).first::<i64>(_conn);
                 match _result {
@@ -174,8 +173,8 @@ impl ManagementAsyncTrait<OrderForm, OrderId> for Order {
 #[async_trait::async_trait(?Send)]
 pub trait Order_ {
     /// Helper functions
-    fn usr_orders_by_filter<'a>(_sql: &'a str) -> usr_orders::BoxedQuery<'a, diesel::pg::Pg> {
-        usr_orders::table.filter(sql(_sql)).into_boxed()
+    fn user_orders_by_filter<'a>(_sql: &'a str) -> user_orders::BoxedQuery<'a, diesel::pg::Pg> {
+        user_orders::table.filter(sql(_sql)).into_boxed()
     }
 }
 

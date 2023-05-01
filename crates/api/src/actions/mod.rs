@@ -10,7 +10,7 @@ use actix_web::{
 use actix_web::{
     error::ErrorBadRequest, web::Data, web::Query, Error, FromRequest, HttpRequest, Responder,
 };
-use errors_lib_rs::model::{ApiError, ApiErrorEnum};
+use db_schema::models::model_error::{ApiError, ApiErrorEnum};
 use futures::{
     executor::block_on,
     future::{err, ok, Ready},

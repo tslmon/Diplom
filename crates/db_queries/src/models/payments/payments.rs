@@ -6,7 +6,7 @@ use db_schema::schema::{user_aggregations, user_aggregations::dsl::*};
 use db_schema::PaymentId;
 use diesel::update;
 use diesel::{dsl::*, result::Error, *};
-use errors_lib_rs::{db::ModelErrorMessage, model::ModelError};
+use db_schema::models::{db_error::ModelErrorMessage, model_error::ModelError};
 use futures::try_join;
 
 impl Crud<PaymentForm, PaymentId> for Payment {

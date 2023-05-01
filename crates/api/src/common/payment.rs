@@ -16,7 +16,7 @@ pub struct PaymentApi {}
 //
 #[derive(Clone, Default, Deserialize, Debug, Serialize)]
 pub struct PaymentRequest {
-    pub order_id: OrderId,
+    pub order_id: Option<OrderId>,
     pub amount: String,
 }
 //

@@ -51,23 +51,23 @@ SELECT diesel_manage_updated_at('identifies');
 -- orders
 --
 
-CREATE TABLE IF NOT EXISTS usr_orders (
+CREATE TABLE IF NOT EXISTS user_orders (
     id character varying(255) NOT NULL DEFAULT uuid_generate_v4(),
     user_id character varying(255) NOT NULL,
     order_date timestamp without time zone NOT NULL DEFAULT now(),
-    status character varying(255) NOT NULL,
+    order_status character varying(255) NOT NULL,
     created_by character varying(255) NOT NULL,      
     created_at timestamp without time zone NOT NULL DEFAULT now(),
     updated_by character varying(255) NOT NULL,      
     updated_at timestamp without time zone NOT NULL DEFAULT now(),
-    CONSTRAINT pkey_usr_orders PRIMARY KEY (id),
-    CONSTRAINT fkey_usr_orders_users FOREIGN KEY (user_id)
+    CONSTRAINT pkey_user_orders PRIMARY KEY (id),
+    CONSTRAINT fkey_user_orders_users FOREIGN KEY (user_id)
         REFERENCES users (id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
 
-SELECT diesel_manage_updated_at('usr_orders');
+SELECT diesel_manage_updated_at('user_orders');
 
 --
 -- categories
@@ -124,8 +124,8 @@ CREATE TABLE IF NOT EXISTS order_items (
     updated_by character varying(255) NOT NULL,      
     updated_at timestamp without time zone NOT NULL DEFAULT now(),
     CONSTRAINT pkey_order_items PRIMARY KEY (id),    
-    CONSTRAINT fkey_order_items_usr_orders FOREIGN KEY (order_id)
-        REFERENCES usr_orders (id) MATCH SIMPLE
+    CONSTRAINT fkey_order_items_user_orders FOREIGN KEY (order_id)
+        REFERENCES user_orders (id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE,  
     CONSTRAINT fkey_order_items_products FOREIGN KEY (product_id)
@@ -149,8 +149,8 @@ CREATE TABLE IF NOT EXISTS payments (
     updated_by character varying(255) NOT NULL,      
     updated_at timestamp without time zone NOT NULL DEFAULT now(),
     CONSTRAINT pkey_payments PRIMARY KEY (id),
-    CONSTRAINT fkey_payments_usr_orders FOREIGN KEY (order_id)
-        REFERENCES usr_orders (id) MATCH SIMPLE
+    CONSTRAINT fkey_payments_user_orders FOREIGN KEY (order_id)
+        REFERENCES user_orders (id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE    
 );

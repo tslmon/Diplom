@@ -14,7 +14,7 @@ use db_schema::{
 };
 use db_views::cards::cards_view::CardView;
 use db_views::RequestCollection;
-use errors_lib_rs::model::{ApiError, ApiErrorEnum};
+use db_schema::models::model_error::{ApiError, ApiErrorEnum};
 use futures::future::{ok, Ready};
 use rand::{distributions::Alphanumeric, Rng};
 use serde_json::Value;
@@ -53,7 +53,7 @@ impl ManagementTrait<CardRequest> for CardApi {
     ) -> Result<Self::Response, ApiError> {
         let _conn = connection(&_req);
 
-        let _path_product_id = &_req.match_info().get("product_id").unwrap();
+        let _path_product_id = &_req.match_info().get("card_id").unwrap();
         //println!("_path_product_id = {:}", _path_product_id);
         let _product_id = CardId(_path_product_id.to_string());
 
@@ -88,7 +88,7 @@ impl ManagementTrait<CardRequest> for CardApi {
     ) -> Result<Self::Response, ApiError> {
         let _conn = connection(&_req);
 
-        let _header_product_id = &_req.match_info().get("product_id").unwrap();
+        let _header_product_id = &_req.match_info().get("card_id").unwrap();
 
         let _product_id = CardId(_header_product_id.to_string());
 
@@ -109,7 +109,7 @@ impl ManagementTrait<CardRequest> for CardApi {
     ) -> Result<Self::Response, ApiError> {
         let _conn = connection(&_req);
 
-        let _path_product_id = &_req.match_info().get("product_id").unwrap();
+        let _path_product_id = &_req.match_info().get("card_id").unwrap();
 
         let _product_id = CardId(_path_product_id.to_string());
 

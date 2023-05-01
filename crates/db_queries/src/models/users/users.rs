@@ -6,7 +6,7 @@ use db_schema::schema::{users, users::dsl::*};
 use db_schema::UserId;
 use diesel::update;
 use diesel::{dsl::*, result::Error, *};
-use errors_lib_rs::{db::ModelErrorMessage, model::ModelError};
+use db_schema::models::{db_error::ModelErrorMessage, model_error::ModelError};
 use futures::try_join;
 
 impl Crud<UserForm, UserId> for User {

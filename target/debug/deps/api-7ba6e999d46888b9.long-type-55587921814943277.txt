@@ -1,0 +1,1 @@
+fn(HttpRequest, common::SingularRequest, actix_web::web::Json<user::UserRequest>) -> Pin<Box<(dyn futures::Future<Output = Result<HttpResponse, db_schema::models::model_error::ApiError>> + 'async_trait)>>

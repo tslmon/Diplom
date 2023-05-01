@@ -7,7 +7,7 @@ use diesel::{
     query_dsl::LoadQuery,
     sql_types, PgConnection, QueryId, QueryResult, Queryable, RunQueryDsl,
 };
-use errors_lib_rs::model::ModelError;
+use db_schema::models::model_error::ModelError;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use std::collections::HashMap;

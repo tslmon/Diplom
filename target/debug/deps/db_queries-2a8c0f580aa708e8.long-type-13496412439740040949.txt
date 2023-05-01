@@ -1,1 +1,0 @@
-BoxedSelectStatement<'_, (Text, Text, Text, diesel::sql_types::Nullable<Text>, Text, Timestamp, Text, Timestamp), db_schema::schema::comments::table, Pg>

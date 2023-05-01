@@ -20,7 +20,7 @@ pub struct Payment {
 #[derive(Insertable, AsChangeset, Clone, Default, Debug)]
 #[table_name = "payments"]
 pub struct PaymentForm {
-    pub order_id: OrderId,
+    pub order_id: Option<OrderId>,
     pub amount: String,
     pub created_by: Option<String>,
     pub updated_by: Option<String>,

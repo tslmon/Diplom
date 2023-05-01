@@ -1333,6 +1333,7 @@ dependencies = [
 name = "db_schema"
 version = "0.1.0"
 dependencies = [
+ "actix-web 4.3.1",
  "chrono",
  "diesel",
  "diesel-derive-newtype",

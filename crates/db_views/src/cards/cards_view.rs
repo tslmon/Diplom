@@ -5,7 +5,7 @@ use db_schema::{
     CardId,
 };
 use diesel::PgConnection;
-use errors_lib_rs::model::ModelError;
+use db_schema::models::model_error::ModelError;
 use serde::Serialize;
 use serde_json::{json, Value};
 

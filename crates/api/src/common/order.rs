@@ -1,5 +1,5 @@
 use db_schema::models::orders::{Order, OrderForm};
-use db_schema::{naive_now, schema::usr_orders, CategoryId, OrderId, UserId};
+use db_schema::{naive_now, schema::user_orders, CategoryId, OrderId, UserId};
 
 // use db_views::resource_view;
 use diesel::{AsChangeset, Associations, Identifiable, Insertable, Queryable};
@@ -16,6 +16,6 @@ pub struct OrderApi {}
 //
 #[derive(Clone, Default, Deserialize, Debug, Serialize)]
 pub struct OrderRequest {
-    pub user_id: UserId,
-    pub status: String
+    pub user_id: Option<UserId>,
+    pub status: Option<String>
 }

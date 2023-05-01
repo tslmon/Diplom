@@ -7,3 +7,6 @@ pub mod orders;
 pub mod payments;
 pub mod products;
 pub mod users;
+pub mod api_error;
+pub mod db_error;
+pub mod model_error;

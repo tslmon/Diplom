@@ -14,7 +14,7 @@ use db_schema::{
 };
 use db_views::order_items::order_items_view::OrderItemView;
 use db_views::RequestCollection;
-use errors_lib_rs::model::{ApiError, ApiErrorEnum};
+use db_schema::models::model_error::{ApiError, ApiErrorEnum};
 use futures::future::{ok, Ready};
 use rand::{distributions::Alphanumeric, Rng};
 use serde_json::Value;

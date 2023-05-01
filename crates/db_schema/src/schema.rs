@@ -135,11 +135,11 @@ diesel::table! {
 }
 
 diesel::table! {
-    usr_orders (id) {
+    user_orders (id) {
         id -> Varchar,
         user_id -> Varchar,
         order_date -> Timestamp,
-        status -> Varchar,
+        order_status -> Varchar,
         created_by -> Varchar,
         created_at -> Timestamp,
         updated_by -> Varchar,
@@ -154,11 +154,11 @@ diesel::joinable!(comments -> products (product_id));
 diesel::joinable!(comments -> users (user_id));
 diesel::joinable!(identifies -> users (user_id));
 diesel::joinable!(order_items -> products (product_id));
-diesel::joinable!(order_items -> usr_orders (order_id));
-diesel::joinable!(payments -> usr_orders (order_id));
+diesel::joinable!(order_items -> user_orders (order_id));
+diesel::joinable!(payments -> user_orders (order_id));
 diesel::joinable!(products -> categories (category_id));
 diesel::joinable!(user_aggregations -> users (user_id));
-diesel::joinable!(usr_orders -> users (user_id));
+diesel::joinable!(user_orders -> users (user_id));
 
 diesel::allow_tables_to_appear_in_same_query!(
     cards,
@@ -171,5 +171,5 @@ diesel::allow_tables_to_appear_in_same_query!(
     products,
     user_aggregations,
     users,
-    usr_orders,
+    user_orders,
 );
