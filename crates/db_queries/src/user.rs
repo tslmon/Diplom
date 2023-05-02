@@ -4,7 +4,6 @@ use db_schema::{
     UserId,
 };
 use diesel::{dsl::*, *};
-use errors_lib_rs::{db::ModelErrorMessage, model::ModelError};
 
 impl Crud<UserForm, UserId> for User {
     fn create(_conn: &PgConnection, _form: &UserForm) -> Result<Self, ModelError> {

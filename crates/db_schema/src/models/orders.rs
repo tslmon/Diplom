@@ -2,7 +2,6 @@ use crate::{
     schema::{order_items, user_orders},
     OrderId, OrderItemId, ProductId, UserId,
 };
-use errors_lib_rs::db::ModelErrorMessage;
 use serde::Deserialize;
 use serde::Serialize;
 use serde_json::Value;

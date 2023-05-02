@@ -31,7 +31,6 @@ rust-argon2 = "1.0.0"
 actix-web = "4.0.1"
 async-trait = "0.1.42"
 futures = "0.3.21"
-errors-lib-rs = { git = 'https://github.com/aircampi/errors-lib-rs' }
 [dependencies.getrandom]
 version = "0.2"
 

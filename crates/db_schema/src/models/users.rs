@@ -3,7 +3,6 @@ use crate::{
     UserAggregationId, UserId,
 };
 
-use errors_lib_rs::db::ModelErrorMessage;
 use serde::Deserialize;
 use serde::Serialize;
 use serde_json::Value;

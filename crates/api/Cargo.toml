@@ -40,7 +40,6 @@ anyhow = "1.0.65"
 thiserror = "1.0.23"
 background-jobs = "0.8.0"
 reqwest = { version = "0.11.10", features = ["blocking","json"] }
-errors-lib-rs = { git = 'https://github.com/aircampi/errors-lib-rs' }
 
 
 #
