@@ -115,7 +115,7 @@ impl Default for DatabaseConfig {
     fn default() -> Self {
         Self {
             user: "postgres".into(),
-            password: "1234".into(),
+            password: "Admin_13".into(),
             host: "localhost".into(),
             port: 5432,
             database: "petsshop".into(),
