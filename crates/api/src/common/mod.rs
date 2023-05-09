@@ -99,6 +99,17 @@ pub struct CollectionResponce<T> {
     pub limit: Option<u32>,
 }
 
+#[derive(Deserialize)]
+pub struct LoginApi {}
+//
+//
+//
+#[derive(Clone, Default, Deserialize, Debug, Serialize)]
+pub struct LoginRequest {
+    pub user_name: Option<String>,
+    pub password: Option<String>,
+}
+
 pub struct AuthContext {
     pub pool: Option<DbPool>,
     pub client: Client,
@@ -222,3 +233,5 @@ mod tests {
         assert_eq!(2 + 2, 4);
     }
 }
+
+

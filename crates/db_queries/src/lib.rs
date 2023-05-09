@@ -6,7 +6,7 @@ extern crate strum_macros;
 use diesel::PgConnection;
 pub mod models;
 use crate::diesel::Connection;
-use db_schema::models::errors::PetsShopAPIError;
+use db_schema::{models::{errors::PetsShopAPIError, users::User}, schema::users::{self, user_name, pwd}};
 use diesel::{result::Error, *};
 use db_schema::models::{db_error::ModelErrorMessage, model_error::ModelError};
 use serde::Serialize;
@@ -16,6 +16,15 @@ use std::env::{self, VarError};
 pub type DbPool = diesel::r2d2::Pool<diesel::r2d2::ConnectionManager<diesel::PgConnection>>;
 pub fn get_database_url_from_env() -> Result<String, VarError> {
     env::var("TREE_DATABASE_URL")
+}
+
+
+pub fn login_user(_conn: &PgConnection, _user_name: String, _password: String) -> Result<User, ModelError> {        
+    let _result = users::table.filter(user_name.eq(_user_name)).filter(pwd.eq(_password)).first::<User>(_conn);
+    match _result {
+        Ok(res) => Ok(res),
+        Err(_err) => Err(PetsShopAPIError::diesel_error(_err)),
+    }
 }
 
 embed_migrations!();

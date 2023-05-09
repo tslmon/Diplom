@@ -1,3 +1,0 @@
-cargo:rerun-if-changed=build/main.rs
-cargo:rustc-env=TYPENUM_BUILD_CONSTS=/Users/batbayarenkhbayar/D/Diplom/target/debug/build/typenum-820c43fc8b030d9f/out/consts.rs
-cargo:rustc-env=TYPENUM_BUILD_OP=/Users/batbayarenkhbayar/D/Diplom/target/debug/build/typenum-820c43fc8b030d9f/out/op.rs

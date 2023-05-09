@@ -193,6 +193,10 @@ pub trait User_ {
     ) -> Result<Vec<UserData>, ModelError>
     where
         Self: Sized;
+
+    pub fn login_user(_conn: &PgConnection, _user_name: String, _password: String) -> Result<User, ModelError> 
+    where
+        Self: Sized;
 }
 
 #[async_trait::async_trait(?Send)]
