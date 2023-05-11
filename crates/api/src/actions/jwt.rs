@@ -39,18 +39,9 @@ impl ManagementTrait<LoginRequest> for LoginApi {
             _data.user_name.clone().unwrap(),
             _data.password.clone().unwrap(),
         )?;
-        let mut a = String::new();
-        a = Claims::jwt(
-            _data.user_name.clone().unwrap(),
-            _data.password.clone().unwrap(),
-        )
-        .unwrap();
-        if b.user_name == _data.user_name.clone().unwrap() {
-            
-
-        }
-        println!("{:#?}", a);
-        let _body = serde_json::to_string(&a)?;
+        
+        
+        let _body = serde_json::to_string(&b.id)?;
         Ok(HttpResponse::Created()
             .content_type(ContentType::json())
             .body(_body))
