@@ -31,6 +31,7 @@ pub mod payments;
 pub mod products;
 pub mod users;
 pub mod jwt;
+pub mod search;
 //
 #[async_trait::async_trait(?Send)]
 pub trait Perform {

@@ -99,6 +99,18 @@ pub struct CollectionResponce<T> {
     pub limit: Option<u32>,
 }
 
+//
+// search Api
+//
+#[derive(Deserialize)]
+pub struct SearchApi {}
+//
+#[derive(Clone, Default, Deserialize, Debug, Serialize)]
+pub struct SearchRequest {
+    pub search_value: Option<String>,
+}
+
+//
 #[derive(Deserialize)]
 pub struct LoginApi {}
 //
@@ -233,5 +245,3 @@ mod tests {
         assert_eq!(2 + 2, 4);
     }
 }
-
-

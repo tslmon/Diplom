@@ -2,6 +2,7 @@ use actix_session::CookieSession;
 use actix_web::{guard, web, *};
 use api::actions::ManagementTrait;
 use api::common::LoginApi;
+use api::common::SearchApi;
 // use api::actions::monitoring::AggregationManagementTrait;
 use api::common::card::*;
 use api::common::category::*;
@@ -88,10 +89,8 @@ pub fn config(cfg: &mut web::ServiceConfig, rate_limit: &RateLimit) {
                     .route("", web::get().to(CardApi::get_collection))
                     .route("/{card_id}", web::put().to(CardApi::update_item)),
             )
-            .service(
-                web::scope("/login")
-                    .route("", web::post().to(LoginApi::create_item))
-            ),
+            .service(web::scope("/login").route("", web::post().to(LoginApi::create_item)))
+            .service(web::scope("/search").route("", web::post().to(SearchApi::create_item))),
     );
 }
 
