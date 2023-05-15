@@ -95,7 +95,7 @@ pub fn config(cfg: &mut web::ServiceConfig, rate_limit: &RateLimit) {
                     .route("/{card_id}", web::put().to(CardApi::update_item)),
             )
             .service(web::scope("/login").route("", web::post().to(LoginApi::create_item)))
-            .service(web::scope("/reports").route("", web::post().to(ReportAllApi::create_item)))
+            .service(web::scope("/reports").route("", web::get().to(ReportAllApi::get_item)))
             .service(
                 web::scope("/descrease_quantity")
                     .route("", web::post().to(DecreaseApi::update_item)),

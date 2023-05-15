@@ -28,10 +28,9 @@ use serde_json::Value;
 impl ManagementTrait<ReportAllRequest> for ReportAllApi {
     type Response = HttpResponse;
 
-    async fn create_item(
+    async fn get_item(
         _req: HttpRequest,
         _single: SingularRequest,
-        _data: Json<ReportAllRequest>,
     ) -> Result<Self::Response, ApiError> {
         let _conn = connection(&_req);
         //println!("{:#?}", _data);
