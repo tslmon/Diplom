@@ -1,11 +1,18 @@
+use crate::diesel::ExpressionMethods;
+use crate::diesel::QueryDsl;
+use crate::diesel::RunQueryDsl;
 use crate::ResponceCollection;
 use db_queries::{models::products::products::Product_, ManagementAsyncTrait, ViewToVec};
+use db_schema::CategoryId;
+use db_schema::models::model_error::ModelError;
+use db_schema::schema::categories;
+use db_schema::schema::products::dsl::*;
+use db_schema::schema::products::id;
 use db_schema::{
     models::products::{Product, ProductForm},
     ProductId,
 };
 use diesel::PgConnection;
-use db_schema::models::model_error::ModelError;
 use serde::Serialize;
 use serde_json::{json, Value};
 
@@ -119,5 +126,49 @@ impl ProductView {
         };
 
         Ok(_res)
+    }
+    pub async fn decrease(
+        _conn: &PgConnection,
+        _id: &Vec<ProductId>,
+    ) -> Result<String, ModelError> {
+        for a in _id {
+            let b = products
+                .find(a)
+                .select(quantity)
+                .first::<i64>(_conn)
+                .unwrap();
+
+            let c = b - 1;
+
+            diesel::update(products)
+                .filter(id.eq(a))
+                .set(quantity.eq(c))
+                .execute(_conn);
+        }
+
+        Ok(String::new())
+    }
+    pub async fn image(
+        _conn: &PgConnection,
+        _id: &ProductId,
+        _image: String,
+    ) -> Result<String, ModelError> {
+        diesel::update(products)
+            .filter(id.eq(_id))
+            .set(image.eq(_image))
+            .execute(_conn);
+        Ok(String::new())
+    }
+    pub async fn image1(
+        _conn: &PgConnection,
+        _id: &CategoryId,
+        _image: String,
+    ) -> Result<String, ModelError> {
+        use db_schema::schema::categories::dsl::*;
+        diesel::update(categories)
+            .filter(id.eq(_id))
+            .set(image.eq(_image))
+            .execute(_conn);
+        Ok(String::new())
     }
 }

@@ -1,4 +1,5 @@
 use actix_web::{web::Data, web::Query, HttpRequest};
+use db_schema::ProductId;
 use diesel::{
     r2d2::{ConnectionManager, PooledConnection},
     PgConnection,
@@ -121,6 +122,51 @@ pub struct LoginRequest {
     pub user_name: Option<String>,
     pub password: Option<String>,
 }
+
+#[derive(Deserialize)]
+pub struct ReportApi {}
+//
+//
+//
+#[derive(Clone, Default, Deserialize, Debug, Serialize)]
+pub struct ReportRequest {
+    pub days: Option<i32>,
+}
+#[derive(Deserialize)]
+pub struct DecreaseApi {}
+//
+//
+//
+#[derive(Clone, Default, Deserialize, Debug, Serialize)]
+pub struct DecreaseRequest {
+    pub products: Option<Vec<ProductId>>,
+}
+#[derive(Deserialize)]
+pub struct ProductImageApi {}
+//
+//
+//
+#[derive(Clone, Default, Deserialize, Debug, Serialize)]
+pub struct ProductImageRequest {
+    pub image: Option<String>,
+}
+#[derive(Deserialize)]
+pub struct CategoryImageApi {}
+//
+//
+//
+#[derive(Clone, Default, Deserialize, Debug, Serialize)]
+pub struct CategoryImageRequest {
+    pub image: Option<String>,
+}
+
+#[derive(Deserialize)]
+pub struct ReportAllApi {}
+//
+//
+//
+#[derive(Clone, Default, Deserialize, Debug, Serialize)]
+pub struct ReportAllRequest {}
 
 pub struct AuthContext {
     pub pool: Option<DbPool>,

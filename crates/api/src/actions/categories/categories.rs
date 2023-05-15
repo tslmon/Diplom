@@ -32,6 +32,7 @@ impl ManagementTrait<CategoryRequest> for CategoryApi {
         //println!("{:#?}", _data);
         let form = CategoryForm {
             name: _data.name.clone(),
+            image: _data.image.clone(),
             parent: _data.parent.clone(),
             created_by: Some("user".to_string()),
             updated_by: Some("user".to_string()),
@@ -62,6 +63,7 @@ impl ManagementTrait<CategoryRequest> for CategoryApi {
 
         let form = CategoryForm {
             name: _data.name.clone(),
+            image: _data.image.clone(),
             parent: _data.parent.clone(),
             created_by: Some("user".to_string()),
             updated_by: Some("user".to_string()),

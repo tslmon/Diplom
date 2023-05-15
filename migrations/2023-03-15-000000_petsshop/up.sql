@@ -76,6 +76,7 @@ SELECT diesel_manage_updated_at('user_orders');
 CREATE TABLE IF NOT EXISTS categories (
     id character varying(255) NOT NULL DEFAULT uuid_generate_v4(),
     name character varying(255) NOT NULL,
+    image text,
     parent character varying(255) NOT NULL,
     created_by character varying(255) NOT NULL,      
     created_at timestamp without time zone NOT NULL DEFAULT now(),
@@ -94,7 +95,7 @@ CREATE TABLE IF NOT EXISTS products (
     id character varying(255) NOT NULL DEFAULT uuid_generate_v4(),
     name character varying(255) NOT NULL,
     description text,
-    image text NOT NULL,
+    image text,
     price bigint NOT NULL,
     quantity bigint NOT NULL,
     category_id character varying(255) NOT NULL, 

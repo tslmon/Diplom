@@ -1,7 +1,12 @@
 use actix_session::CookieSession;
 use actix_web::{guard, web, *};
 use api::actions::ManagementTrait;
+use api::common::CategoryImageApi;
+use api::common::DecreaseApi;
 use api::common::LoginApi;
+use api::common::ProductImageApi;
+use api::common::ReportAllApi;
+use api::common::ReportApi;
 use api::common::SearchApi;
 // use api::actions::monitoring::AggregationManagementTrait;
 use api::common::card::*;
@@ -90,6 +95,22 @@ pub fn config(cfg: &mut web::ServiceConfig, rate_limit: &RateLimit) {
                     .route("/{card_id}", web::put().to(CardApi::update_item)),
             )
             .service(web::scope("/login").route("", web::post().to(LoginApi::create_item)))
+            .service(web::scope("/reports").route("", web::post().to(ReportAllApi::create_item)))
+            .service(
+                web::scope("/descrease_quantity")
+                    .route("", web::post().to(DecreaseApi::update_item)),
+            )
+            .service(
+                web::scope("/{product_id}/product_image")
+                    .route("", web::put().to(ProductImageApi::update_item)),
+            )
+            .service(
+                web::scope("/{category_id}/category_image")
+                    .route("", web::put().to(CategoryImageApi::update_item)),
+            ) // .service(
+               //     web::scope("/all_reports")
+               //         .route("", web::post().to(ReportAllApi::create_item))
+               // )
             .service(web::scope("/search").route("", web::post().to(SearchApi::create_item))),
     );
 }

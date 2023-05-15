@@ -17,6 +17,7 @@ pub struct CategoryApi {}
 #[derive(Clone, Default, Deserialize, Debug, Serialize)]
 pub struct CategoryRequest {
     pub name: Option<String>,
+    pub image: Option<String>,
     pub parent: Option<String>,
 }
 //

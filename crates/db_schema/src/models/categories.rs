@@ -12,6 +12,7 @@ use serde_json::Value;
 pub struct Category {
     pub id: CategoryId,
     pub name: String,
+    pub image: Option<String>,
     pub parent: String,
     pub created_by: String,
     pub created_at: chrono::NaiveDateTime,
@@ -24,6 +25,7 @@ pub struct Category {
 pub struct CategoryForm {
     pub name: Option<String>,
     pub parent: Option<String>,
+    pub image: Option<String>,
     pub created_by: Option<String>,
     pub updated_by: Option<String>,
 }

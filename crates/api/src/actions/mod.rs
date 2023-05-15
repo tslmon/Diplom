@@ -1,7 +1,7 @@
 use crate::common::*;
 use actix_session::Session;
 use actix_web::body::MessageBody;
-use actix_web::web::Json;
+use actix_web::web::{Form, Json};
 use actix_web::{
     body::BoxBody,
     http::{header::ContentType, StatusCode},
@@ -25,12 +25,13 @@ pub mod cards;
 pub mod categories;
 pub mod comments;
 pub mod health;
+pub mod jwt;
 pub mod order_items;
 pub mod orders;
 pub mod payments;
 pub mod products;
+pub mod reports;
 pub mod users;
-pub mod jwt;
 pub mod search;
 //
 #[async_trait::async_trait(?Send)]
@@ -120,6 +121,9 @@ pub trait ManagementTrait<T: Sized + Send + 'static> {
         _req: HttpRequest,
         _coll: CollectionRequest,
     ) -> Result<Self::Response, ApiError> {
+        todo!()
+    }
+    async fn image(_req: HttpRequest, _coll: Form<ProductImageRequest>) -> Result<Self::Response, ApiError> {
         todo!()
     }
 }

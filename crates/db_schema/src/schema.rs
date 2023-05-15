@@ -16,6 +16,7 @@ diesel::table! {
     categories (id) {
         id -> Varchar,
         name -> Varchar,
+        image -> Nullable<Varchar>,
         parent -> Varchar,
         created_by -> Varchar,
         created_at -> Timestamp,

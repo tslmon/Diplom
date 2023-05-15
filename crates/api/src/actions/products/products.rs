@@ -1,5 +1,9 @@
 use crate::actions::ManagementTrait;
-use crate::common::{connection, product::*, CollectionRequest, SingularRequest};
+use crate::common::{
+    connection, product::*, CategoryImageApi, CategoryImageRequest, CollectionRequest, DecreaseApi,
+    DecreaseRequest, ProductImageApi, ProductImageRequest, SingularRequest,
+};
+use actix_web::web::Form;
 use actix_web::{
     body::BoxBody,
     http::{header::ContentType, StatusCode},
@@ -7,6 +11,8 @@ use actix_web::{
     Error, FromRequest, HttpRequest, HttpResponse, Responder,
 };
 use db_queries::models::products::products::Product_;
+use db_schema::models::model_error::{ApiError, ApiErrorEnum};
+use db_schema::CategoryId;
 use db_schema::{models::products::*, ProductId};
 use db_schema::{
     models::products::{Product, ProductForm},
@@ -14,7 +20,6 @@ use db_schema::{
 };
 use db_views::products::products_view::ProductView;
 use db_views::RequestCollection;
-use db_schema::models::model_error::{ApiError, ApiErrorEnum};
 use futures::future::{ok, Ready};
 use rand::{distributions::Alphanumeric, Rng};
 use serde_json::Value;
@@ -151,6 +156,78 @@ impl ManagementTrait<ProductRequest> for ProductApi {
         let _body = serde_json::to_string(&_response)?;
 
         Ok(HttpResponse::Ok()
+            .content_type(ContentType::json())
+            .body(_body))
+    }
+}
+
+#[async_trait::async_trait(?Send)]
+impl ManagementTrait<DecreaseRequest> for DecreaseApi {
+    type Response = HttpResponse;
+
+    async fn update_item(
+        _req: HttpRequest,
+        _single: SingularRequest,
+        _data: Json<DecreaseRequest>,
+    ) -> Result<Self::Response, ApiError> {
+        let _conn = connection(&_req);
+        //println!("{:#?}", _data);
+
+        let _response = ProductView::decrease(&_conn, &_data.products.clone().unwrap()).await?;
+
+        let _body = serde_json::to_string(&_response)?;
+        Ok(HttpResponse::Created()
+            .content_type(ContentType::json())
+            .body(_body))
+    }
+}
+
+#[async_trait::async_trait(?Send)]
+impl ManagementTrait<ProductImageRequest> for ProductImageApi {
+    type Response = HttpResponse;
+
+    async fn update_item(
+        _req: HttpRequest,
+        _single: SingularRequest,
+        _data: Json<ProductImageRequest>,
+    ) -> Result<Self::Response, ApiError> {
+        let _conn = connection(&_req);
+        //println!("{:#?}", _data);
+
+        let _path_product_id = &_req.match_info().get("product_id").unwrap();
+        //println!("_path_product_id = {:}", _path_product_id);
+        let _product_id = ProductId(_path_product_id.to_string());
+
+        let _response =
+            ProductView::image(&_conn, &_product_id, _data.image.clone().unwrap()).await?;
+
+        let _body = serde_json::to_string(&_response)?;
+        Ok(HttpResponse::Created()
+            .content_type(ContentType::json())
+            .body(_body))
+    }
+}
+#[async_trait::async_trait(?Send)]
+impl ManagementTrait<CategoryImageRequest> for CategoryImageApi {
+    type Response = HttpResponse;
+
+    async fn update_item(
+        _req: HttpRequest,
+        _single: SingularRequest,
+        _data: Json<CategoryImageRequest>,
+    ) -> Result<Self::Response, ApiError> {
+        let _conn = connection(&_req);
+        //println!("{:#?}", _data);
+
+        let _path_product_id = &_req.match_info().get("category_id").unwrap();
+        //println!("_path_product_id = {:}", _path_product_id);
+        let _product_id = CategoryId(_path_product_id.to_string());
+
+        let _response =
+            ProductView::image1(&_conn, &_product_id, _data.image.clone().unwrap()).await?;
+
+        let _body = serde_json::to_string(&_response)?;
+        Ok(HttpResponse::Created()
             .content_type(ContentType::json())
             .body(_body))
     }

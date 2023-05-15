@@ -1,12 +1,12 @@
 use crate::{Aggregation, Crud, ManagementAsyncTrait};
 use db_schema::models::errors::PetsShopAPIError;
 use db_schema::models::orders::{Order, OrderForm};
+use db_schema::models::{db_error::ModelErrorMessage, model_error::ModelError};
 use db_schema::schema::{user_aggregations, user_aggregations::dsl::*};
 use db_schema::schema::{user_orders, user_orders::dsl::*};
 use db_schema::OrderId;
 use diesel::update;
 use diesel::{dsl::*, result::Error, *};
-use db_schema::models::{db_error::ModelErrorMessage, model_error::ModelError};
 use futures::try_join;
 
 impl Crud<OrderForm, OrderId> for Order {
@@ -19,7 +19,6 @@ impl Crud<OrderForm, OrderId> for Order {
             Ok(res) => Ok(res),
             Err(_err) => Err(PetsShopAPIError::diesel_error(_err)),
         }
-
     }
 
     fn read(_conn: &PgConnection, _id: &OrderId) -> Result<Self, ModelError> {
@@ -176,7 +175,10 @@ pub trait Order_ {
     fn user_orders_by_filter<'a>(_sql: &'a str) -> user_orders::BoxedQuery<'a, diesel::pg::Pg> {
         user_orders::table.filter(sql(_sql)).into_boxed()
     }
+
 }
 
 #[async_trait::async_trait(?Send)]
-impl Order_ for Order {}
+impl Order_ for Order {
+    
+}

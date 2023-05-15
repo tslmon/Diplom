@@ -1,11 +1,19 @@
+use crate::diesel::ExpressionMethods;
+use crate::diesel::GroupByDsl;
 use crate::ResponceCollection;
 use db_queries::{models::orders::orders::Order_, ManagementAsyncTrait, ViewToVec};
+use db_schema::models::model_error::ModelError;
+use db_schema::schema::{order_items, products};
 use db_schema::{
     models::orders::{Order, OrderForm},
+    schema::user_orders,
     OrderId,
 };
-use diesel::PgConnection;
-use db_schema::models::model_error::ModelError;
+use diesel::dsl::count;
+use diesel::query_dsl::JoinOnDsl;
+use diesel::sql_query;
+use diesel::QueryDsl;
+use diesel::{query_dsl, PgConnection, RunQueryDsl};
 use serde::Serialize;
 use serde_json::{json, Value};
 
@@ -13,6 +21,18 @@ use serde_json::{json, Value};
 pub struct OrderView {
     #[serde(flatten)]
     pub item: Value,
+}
+
+#[derive(Serialize, Clone, Default, Debug)]
+pub struct ReportAllWithPrice {
+    pub total_saled: i64,
+    pub items: Vec<ReportAll>,
+}
+
+#[derive(Serialize, Clone, Default, Debug)]
+pub struct ReportAll {
+    pub name: String,
+    pub quantity: i64,
 }
 
 type OrderViewTuple = (Order);
@@ -119,5 +139,62 @@ impl OrderView {
         };
 
         Ok(_res)
+    }
+
+    pub fn report_all(_conn: &PgConnection) -> Result<ReportAllWithPrice, ModelError> {
+        let a = user_orders::table
+            .select(user_orders::id)
+            .filter(user_orders::order_status.eq("payed"))
+            .load::<String>(_conn)
+            .unwrap();
+
+        let mut total_saled = 0;
+
+        for i in a {
+            let b = order_items::table
+                .select(order_items::product_id)
+                .filter(order_items::order_id.eq(i))
+                .load::<String>(_conn)
+                .unwrap();
+
+            for j in b {
+                let c = products::table
+                    .select(products::price)
+                    .find(j)
+                    .first::<i64>(_conn)
+                    .unwrap();
+                total_saled = total_saled + c;
+            }
+        }
+
+        let a = products::table
+            .inner_join(order_items::table.on(products::id.eq(order_items::product_id)))
+            .group_by(products::name)
+            .select(products::name)
+            .load::<String>(_conn)
+            .unwrap();
+
+        let b = products::table
+            .inner_join(order_items::table.on(products::id.eq(order_items::product_id)))
+            .group_by(products::name)
+            .select(count(products::name))
+            .load::<i64>(_conn)
+            .unwrap();
+        let mut report_all = Vec::new();
+        let mut p = 0;
+        for l in a {
+            let report = ReportAll {
+                name: l,
+                quantity: b[p],
+            };
+            report_all.push(report);
+            p += 1;
+        }
+
+        let bb = ReportAllWithPrice {
+            total_saled: total_saled,
+            items: report_all,
+        };
+        Ok(bb)
     }
 }
